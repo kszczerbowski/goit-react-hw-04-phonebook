@@ -21,8 +21,6 @@ export const App = () => {
   };
 
   const handleDeleteContact = nameToDelete => {
-    const namesArray = contacts.map(contact => contact.name);
-    const index = namesArray.indexOf(nameToDelete);
     setContacts(contacts.filter(contact => contact.name !== nameToDelete));
   };
 
