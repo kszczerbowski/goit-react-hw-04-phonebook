@@ -1,38 +1,31 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { StyledDeleteButton } from './ContactListElement.styled';
 import PropTypes from 'prop-types';
 
-export class ContactListElement extends Component {
-  render() {
-    const { name, number, onDeleteContact } = this.props;
-    return (
-      <li>
-        <span id="name">{name}</span>: {number}
-        <StyledDeleteButton
-          onClick={() => {
-            onDeleteContact(name);
-          }}
-          type="button"
-        >
-          Delete
-        </StyledDeleteButton>
-      </li>
-    );
-  }
-
-  componentDidMount() {
-    const { name, number, id } = this.props;
+export const ContactListElement = ({ name, number, id, onDeleteContact }) => {
+  useEffect(() => {
     localStorage.setItem(
       JSON.stringify(id),
       JSON.stringify({ name, number, id })
     );
-  }
-
-  componentWillUnmount() {
-    localStorage.removeItem(JSON.stringify(this.props.id));
-  }
-}
-
+    return () => {
+      localStorage.removeItem(JSON.stringify(id));
+    };
+  }, []);
+  return (
+    <li>
+      <span id="name">{name}</span>: {number}
+      <StyledDeleteButton
+        onClick={() => {
+          onDeleteContact(name);
+        }}
+        type="button"
+      >
+        Delete
+      </StyledDeleteButton>
+    </li>
+  );
+};
 ContactListElement.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
