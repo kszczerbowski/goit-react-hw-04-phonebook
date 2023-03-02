@@ -12,7 +12,7 @@ export const App = () => {
 
   useEffect(() => {
     setContacts(getContactsFromLocalStorage());
-  });
+  },[]);
 
   const handleClearForm = event => {
     const form = event.currentTarget;

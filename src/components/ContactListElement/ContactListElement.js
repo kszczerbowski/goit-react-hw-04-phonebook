@@ -11,7 +11,7 @@ export const ContactListElement = ({ name, number, id, onDeleteContact }) => {
     return () => {
       localStorage.removeItem(JSON.stringify(id));
     };
-  }, []);
+  }, [id,name,number]);
   return (
     <li>
       <span id="name">{name}</span>: {number}
