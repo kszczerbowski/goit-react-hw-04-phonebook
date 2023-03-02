@@ -72,7 +72,7 @@ export const App = () => {
         {filteredAndSortedContacts.map(contact => {
           return (
             <ContactListElement
-              key={contact.name}
+              key={contact.id}
               id={contact.id}
               name={contact.name}
               number={contact.number}
